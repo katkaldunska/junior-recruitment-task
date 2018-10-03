@@ -1,0 +1,25 @@
+{
+  "name": "junior-recruitment-task",
+  "version": "1.0.0",
+  "description": "Realizacja prostej listy ToDo (lista zadań do zrobienia) jako aplikacji internetowej, z wykorzystaniem HTML5 po stronie frontendu i dowolnej technologi po stronie backendu. Aplikacja umożliwia dodawanie, przeglądanie i oznaczanie jako wykonane różnych zadań. Dla backendu możemy skorzystać z gotowego API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/katkaldunska/junior-recruitment-task.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/katkaldunska/junior-recruitment-task/issues"
+  },
+  "homepage": "https://github.com/katkaldunska/junior-recruitment-task#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "mongodb": "^3.1.6",
+    "mongoose": "^5.3.1"
+  }
+}
