@@ -1,7 +1,9 @@
 document.addEventListener('DOMContentLoaded', (event) => {
   init();
 });
-
+/**
+  Basic state of application
+**/
 let init = () => {
 
   todosApi.getAllTodos()
@@ -29,7 +31,10 @@ let init = () => {
     .catch((err) => console.error(err));
   });
 };
-
+/**
+  * add html with one todo
+  * @param todo {Object} one todo
+**/
 const makeRow = (todo) => {
   let listContainer = document.getElementById('todo-list');
   let row = document.createElement('div');
@@ -79,6 +84,11 @@ const makeRow = (todo) => {
   });
 };
 
+/**
+  *
+  * @param id {string} id of todo note
+  * @param finished {string} state of todo note
+**/
 const updateFinishedTodo = (id, finished) => {
  var todo = {
    finished
@@ -86,9 +96,20 @@ const updateFinishedTodo = (id, finished) => {
  todosApi.updateTodo(id, todo);
 };
 
+/**
+  Object for communication with API
+**/
+
 const todosApi = {
   url: 'http://salty-plains-72179.herokuapp.com/todos',
 
+  /**
+    * This function makes request to API
+    * @param method
+    * @param url
+    * @param payload
+    * @return {Promise} with api response
+  **/
   makeRequest: (method, url, payload) => {
     return new Promise((resolve, reject) => {
       let xhr = new XMLHttpRequest();
@@ -114,7 +135,10 @@ const todosApi = {
       xhr.send(payload);
     });
   },
-
+/**
+  * get all todo notes 
+  * @return {Promise} with list of all todos
+**/
   getAllTodos: () => {
     return new Promise((resolve, reject) => {
       todosApi.makeRequest('GET', todosApi.url)
@@ -122,7 +146,11 @@ const todosApi = {
       .catch((err) => reject(err));
     });
   },
-
+  /**
+    * get one todo note by id
+    * @param id {string} - id of todo note
+    * @return {Promise} with one todo note
+  **/
   getTodoById: (id) => {
     return new Promise((resolve, reject) => {
       todosApi.makeRequest('GET', `${todosApi.url}\\${id}`)
@@ -130,7 +158,11 @@ const todosApi = {
       .catch((err) => reject(err));
     });
   },
-
+  /**
+    * create todo note
+    * @param todo {string} content of todo note
+    * @return {Promise} with id of todo note
+  **/
   createTodo: (todo) => {
     return new Promise((resolve, reject) => {
       todosApi.makeRequest('POST', todosApi.url, JSON.stringify(todo))
@@ -138,7 +170,12 @@ const todosApi = {
       .catch((err) => reject(err));
     });
   },
-
+  /**
+    * updates todo note
+    * @param id {string} of todo note
+    * @param todo {Object} with data to update
+    * @return {Promise} with updated version of item
+  **/
   updateTodo: (id, todo) => {
     return new Promise((resolve, reject) => {
       todosApi.makeRequest('PATCH',`${todosApi.url}\\${id}` , JSON.stringify(todo))
@@ -146,7 +183,11 @@ const todosApi = {
       .catch((err) => reject(err));
     });
   },
-
+  /**
+    * deletes todo note
+    * @param id {string} - id of todo note
+    * @return {Promise} with deleted todo note
+  **/
   deleteTodo: (id) => {
     return new Promise((resolve, reject) => {
       todosApi.makeRequest('DELETE',`${todosApi.url}\\${id}`)
