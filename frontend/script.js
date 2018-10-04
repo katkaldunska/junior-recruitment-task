@@ -13,16 +13,21 @@ let init = () => {
 
   document.getElementById('add-todo').addEventListener('click', (event) => {
     const inputValue = document.getElementById('input-field').value;
+    if (!inputValue || /^\s+$/.test(inputValue)) {
+      alert('New ToDo can not be empty');
+      return;
+    }
+
     todosApi.createTodo({content: inputValue})
     .then((id) => {
       todosApi.getTodoById(id.replace(/"/g,""))
       .then((todo) => {
         makeRow(JSON.parse(todo));
         document.getElementById('input-field').value = '';
-      })
+      });
     })
     .catch((err) => console.error(err));
-  })
+  });
 };
 
 const makeRow = (todo) => {
@@ -76,9 +81,9 @@ const makeRow = (todo) => {
 
 const updateFinishedTodo = (id, finished) => {
  var todo = {
-   finished: finished
+   finished
  };
- todosApi.updateTodo(id, todo)
+ todosApi.updateTodo(id, todo);
 };
 
 const todosApi = {

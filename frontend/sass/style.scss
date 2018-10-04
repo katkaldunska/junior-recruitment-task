@@ -2,106 +2,120 @@
 $finished-task-color: #9eb2c0;
 $todo-task-color: #2e3641;
 $border-color: #f2e3df;
+$body-color: #e9f0f4;
+$border-color-header: #454f5c;
 
 body {
-  background-color: #e9f0f4;
-  font-family: "Lato";
-  margin-top: 50px;
+  background-color: $body-color;
   border: 1px solid rgb(219, 219, 219);
-  width: 322px;
+  font-family: 'Lato';
+  height: auto;
   margin-left: auto;
   margin-right: auto;
-  height: auto;
+  margin-top: 50px;
+  width: 322px;
 }
 
 section {
   background-color: rgb(255, 255, 255);
-  font-size:10px;
+  font-size: 10px;
+
   #todo-list {
-    font-size:12px;
-    text-decoration: none;
     color: $todo-task-color;
+    font-size: 12px;
+    text-decoration: none;
+
     .todo-bin {
-      opacity:1;
+      opacity: 1;
     }
+
     .done {
       color: $finished-task-color;
       text-decoration: line-through;
+
       .todo-bin {
-        opacity:0.4;
+        opacity: .4;
       }
     }
   }
 }
 
 .todo-single-row {
-
-  display: flex;
   border-bottom: 1px solid $border-color;
-  height:30px;
-
+  display: flex;
+  height: 30px;
 
   .first-column {
-    width: 31px;
-    height:30px;
-    border-right:1px solid $border-color;
-    margin-right:3px;
+    border-right: 1px solid $border-color;
     display: inline-block;
-    float:left;
+    float: left;
+    height: 30px;
+    margin-right: 3px;
+    width: 31px;
+
     input {
       margin: 9px;
     }
   }
 
   .todo-content {
-    width: 258px;
+    border-left: 1px solid $border-color;
     display: inline-block;
-    border-left:1px solid $border-color;
+    line-height: 30px;
     padding-left: 3px;
-    line-height:30px;
+    width: 258px;
+
     input {
-			width:251px;
-			border: none;
-			font-size:10px;
+			width: 251px;
+			border: 0;
+			font-size: 10px;
 		}
   }
+
   .todo-bin {
     width: 30px;
-    line-height:30px;
+    line-height: 30px;
+
     img {
       padding: 10px 10px 5px 8px;
+
       &:hover {
         cursor: pointer;
       }
     }
   }
 }
-header.todo-single-row  {
-  height:39px;
-  width: 322px;
+
+header.todo-single-row {
   background-color: $todo-task-color;
+  height: 39px;
+  width: 322px;
+
   .first-column {
-    height:39px;
-    border-right:1px solid #454f5c;
+    border-right: 1px solid $border-color-header;
+    height: 39px;
   }
+
   .todo-content {
+    border-left: 1px solid $border-color-header;
+    color: #dae4eb;
+    line-height: 39px;
+    padding-left: 10px;
     width: 288px;
-    line-height:39px;
-    border-left:1px solid #454f5c;
-    padding-left:10px;
-    color:#dae4eb;
   }
 }
+
 #add-todo {
   text-decoration: none;
+
   &::before {
-    content: "+";
-    width: 31px;
-    font-size: 22px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-weight:bold;
+    align-items: center;
     color: rgb(218, 228, 235);
+    content: '+';
+    display: flex;
+    font-size: 22px;
+    font-weight: bold;
+    justify-content: center;
+    width: 31px;
   }
 }
