@@ -76,7 +76,7 @@ app.patch('/todos/:id', (req, res) => {
   if (!ObjectID.isValid(id)) {
     return res.status(404).send();
   }
-  Todo.findOneAndUpdate(id, {$set: req.body}, {new: true}).then((todo) => {
+  Todo.findOneAndUpdate({_id: id}, {$set: req.body}, {new: true}).then((todo) => {
     if (!todo) {
       return res.status(404).send();
     }

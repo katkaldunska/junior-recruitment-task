@@ -1,8 +1,64 @@
-$font-stack:    Helvetica, sans-serif;
-$primary-color: #333;
+@import url("https://fonts.googleapis.com/css?family=Lato:400,700");
+$finished-task-color: #9eb2c0;
+$todo-task-color: #2e3641;
 
 body {
-  font: 100% $font-stack;
-  color: $primary-color;
-  background-color: inherit;
+  background-color: #e9f0f4;
+  font-family: "Lato" !important;
+  margin-top:50px;
+  border: 1px solid rgb(219, 219, 219);
+  background-color: rgb(255, 255, 255);
+  top: 41px;
+  width: 322px;
+}
+
+header {
+  width: 322px;
+  height: 30px;
+  background-color: #2e3641;
+  @extend .todo-content;
+}
+
+.todo-single-row {
+  display: flex;
+  border-bottom: 1px solid #e6ebed;
+  border-left: 2px solid #ffffff;
+  border-right: 2px solid #ffffff;
+  height:30px;
+
+  .first-column {
+    width: 31px;
+    border-right:1px solid #f2e3df;
+    margin-right:3px;
+    display: inline-block;
+    float:left;
+    img {
+    }
+  }
+
+  .todo-content {
+    width: 288px;
+    display: inline-block;
+    border-left:1px solid #f2e3df;
+    padding-left: 3px;
+    input {
+			width:251px;
+			border: none;
+			font-size:10px;
+			height:100%;
+		}
+  }
+}
+.todo-single-row header {
+  .first-column {
+    border-right:1px solid #454f5c;
+  }
+  .todo-content {
+    border-left:1px solid #454f5c;
+    color:#dae4eb;
+  }
+}
+#notes {
+  font-size:10px;
+
 }

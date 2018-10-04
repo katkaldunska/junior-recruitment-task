@@ -1,6 +1,64 @@
-/* line 4, ../sass/style.scss */
+@import url("https://fonts.googleapis.com/css?family=Lato:400,700");
+/* line 5, ../sass/style.scss */
 body {
-  font: 100% Helvetica, sans-serif;
-  color: #333;
-  background-color: inherit;
+  background-color: #e9f0f4;
+  font-family: "Lato" !important;
+  margin-top: 50px;
+  border: 1px solid #dbdbdb;
+  background-color: white;
+  top: 41px;
+  width: 322px;
+}
+
+/* line 15, ../sass/style.scss */
+header {
+  width: 322px;
+  height: 30px;
+  background-color: #2e3641;
+}
+
+/* line 22, ../sass/style.scss */
+.todo-single-row {
+  display: flex;
+  border-bottom: 1px solid #e6ebed;
+  border-left: 2px solid #ffffff;
+  border-right: 2px solid #ffffff;
+  height: 30px;
+}
+/* line 29, ../sass/style.scss */
+.todo-single-row .first-column {
+  width: 31px;
+  border-right: 1px solid #f2e3df;
+  margin-right: 3px;
+  display: inline-block;
+  float: left;
+}
+/* line 39, ../sass/style.scss */
+.todo-single-row .todo-content, .todo-single-row header {
+  width: 288px;
+  display: inline-block;
+  border-left: 1px solid #f2e3df;
+  padding-left: 3px;
+}
+/* line 44, ../sass/style.scss */
+.todo-single-row .todo-content input, .todo-single-row header input {
+  width: 251px;
+  border: none;
+  font-size: 10px;
+  height: 100%;
+}
+
+/* line 53, ../sass/style.scss */
+.todo-single-row header .first-column {
+  border-right: 1px solid #454f5c;
+}
+/* line 56, ../sass/style.scss */
+.todo-single-row header .todo-content, .todo-single-row header header {
+  border-left: 1px solid #454f5c;
+  color: #dae4eb;
+}
+
+/* line 61, ../sass/style.scss */
+#notes {
+  font-size: 10px;
 }
