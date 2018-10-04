@@ -8,11 +8,23 @@
   </head>
 
   <body>
-    <header>
-      ToDo List
+    <header class="todo-single-row">
+      <div class="first-column">&nbsp;</div>
+      <div class="todo-content">ToDo List</div>
     </header>
-    <section id="list-container">
+    <section>
+      <div id="todo-list">
+      </div>
+      <div class="todo-single-row">
+        <div class="first-column">
+          <a href="javascript:void(0);"  id="add-todo"></a>
+        </div>
+        <div class="todo-content">
+          <input type="text" id="input-field" placeholder="Add new note">
+        </div>
+      </div>
     </section>
+
     <script src="script.js"></script>
   </body>
 

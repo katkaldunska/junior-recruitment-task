@@ -3,25 +3,30 @@ document.addEventListener('DOMContentLoaded', (event) => {
 });
 
 let init = () => {
-  const listContainer = document.getElementById('list-container');
+
   todosApi.getAllTodos()
   .then((data) => {
     let todos = JSON.parse(data);
-    todos.forEach(todo => listContainer.appendChild(makeRow(todo)));
-
+    todos.forEach(todo => makeRow(todo));
   })
   .catch(err => console.log(err));
-  // todosApi.getTodoById('5bb52891f2b63300157e8e7e')
-  // todosApi.createTodo({content: 'test'})
-  // todosApi.updateTodo({
-  //   _id: '5bb52891f2b63300157e8e7e',
-  //   finished: true
-  // })
-  // todosApi.deleteTodo('5bb60aba87c69400154161e6')
 
+  document.getElementById('add-todo').addEventListener('click', (event) => {
+    const inputValue = document.getElementById('input-field').value;
+    todosApi.createTodo({content: inputValue})
+    .then((id) => {
+      todosApi.getTodoById(id.replace(/"/g,""))
+      .then((todo) => {
+        makeRow(JSON.parse(todo));
+        document.getElementById('input-field').value = '';
+      })
+    })
+    .catch((err) => console.error(err));
+  })
 };
 
-let makeRow = (todo) => {
+const makeRow = (todo) => {
+  let listContainer = document.getElementById('todo-list');
   let row = document.createElement('div');
   row.classList.add('todo-single-row');
   let firstColumn = document.createElement('div');
@@ -31,17 +36,42 @@ let makeRow = (todo) => {
   checkbox.id = todo._id;
   checkbox.checked = todo.finished;
 
-  checkbox.addEventListener('change', (event) => updateFinishedTodo(
-    checkbox.id,
-    checkbox.checked
-  ));
+  if (todo.finished) {
+    row.classList.add('done');
+  }
 
   row.appendChild(firstColumn).appendChild(checkbox);
   let contentBox = document.createElement('div');
   contentBox.classList.add('todo-content');
   let content = document.createTextNode(todo.content);
   row.appendChild(contentBox).appendChild(content);
-  return row;
+
+  let binBox = document.createElement('div');
+  binBox.classList.add('todo-bin');
+  let bin = document.createElement('img');
+  bin.src = '../assets/trash.png';
+  row.appendChild(binBox).appendChild(bin);
+
+  listContainer.appendChild(row);
+
+// Delete todo
+  bin.addEventListener('click', (event) => {
+    todosApi.deleteTodo(todo._id)
+    .then(row.remove())
+    .catch(err => console.log(err));
+  });
+// Check / uncheck todo
+  checkbox.addEventListener('change', (event) => {
+    updateFinishedTodo(
+      checkbox.id,
+      checkbox.checked
+    );
+    if (checkbox.checked) {
+      row.classList.add('done');
+    } else {
+      row.classList.remove('done');
+    }
+  });
 };
 
 const updateFinishedTodo = (id, finished) => {
